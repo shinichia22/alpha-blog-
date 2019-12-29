@@ -3,10 +3,22 @@ class  ArticlesController < ApplicationController
     @article =Article.new
   end
   def create
-    # render plain: params[:article].inspect
+    # render plain: params[:article].inspect   #This code is without validation
+    # @article =Article.new(article_params)  #This code is without validation
+    # @article.save                             #This code is without validation
+    # redirect_to article_path(@article)       #This code is without validation
     @article =Article.new(article_params)
-    @article.save
-    redirect_to articles_show(@article)
+    if @article.save 
+      flash[:notice] = "Article has successfully created"
+      redirect_to article_path(@article)
+    else
+      render 'new'
+    end
+
+  def show
+    @article=Article.find(params[:id])
+
+  end
 
   end
 private
