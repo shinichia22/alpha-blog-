@@ -1,4 +1,5 @@
 class  ArticlesController < ApplicationController
+  before_action :set_article, only: [:edit, :update, :show, :destroy]
   def index
     @any_name =Article.all
   end
@@ -8,7 +9,7 @@ class  ArticlesController < ApplicationController
   end
 
   def edit
-    @article=Article.find(params[:id])
+    
   end
 
 
@@ -27,7 +28,7 @@ class  ArticlesController < ApplicationController
   end
   
   def update  
-    @article = Article.find(params[:id])  # This is taken care from the edit action
+    # @article = Article.find(params[:id])  # This is taken care from the edit action
     if @article.update(article_params)  # as in routes it shows that it take arguments we add the arguments
       flash[:notice] = "Article has been successfully updated"
       redirect_to article_path(@article)
@@ -38,11 +39,10 @@ class  ArticlesController < ApplicationController
 
 
   def show
-    @article=Article.find(params[:id])
+    
   end
 
-  def destroy
-    @article=Article.find(params[:id])
+  def destroy    
     @article.destroy
     flash[:notice] = "Article has successfully deleted"
     redirect_to articles_path
@@ -51,6 +51,10 @@ class  ArticlesController < ApplicationController
 
 
 private
+  def set_article
+  @article =Article.find(params[:id])
+  end
+
   def article_params
     params.require(:article).permit(:title, :description)
   end
