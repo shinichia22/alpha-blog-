@@ -1,7 +1,19 @@
 class  ArticlesController < ApplicationController
+  def index
+    @any_name =Article.all
+  end
+
+
+
   def new
     @article =Article.new
   end
+
+  def edit
+    @article=Article.find(params[:id])
+  end
+
+
   def create
     # render plain: params[:article].inspect   #This code is without validation
     # @article =Article.new(article_params)  #This code is without validation
@@ -14,13 +26,23 @@ class  ArticlesController < ApplicationController
     else
       render 'new'
     end
+  end
+  
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      flash[:notice] = "Article has been successfully updated"
+      redirect_to article_path(@article)
+    else
+      render 'edit'
+    end
+  end
+
 
   def show
     @article=Article.find(params[:id])
-
   end
 
-  end
 private
   def article_params
     params.require(:article).permit(:title, :description)
