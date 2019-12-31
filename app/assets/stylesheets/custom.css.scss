@@ -56,7 +56,13 @@ footer ul li {
   float: left;
   margin-left: 15px;
 }
-
+.article-actions {
+  border-top: 1px solid #eaeaee;
+  padding-top: 5px;
+}
+.description {
+  margin-top: 1px;
+}
 #logo:hover {
   color: #0757f7;
   text-decoration: none;
