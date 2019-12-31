@@ -61,8 +61,18 @@ footer ul li {
   padding-top: 5px;
 }
 .description {
-  margin-top: 1px;
+  margin-top: 0px;
 }
+.article-title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.article-body {
+  border-top: 1px solid #eaeaea;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
 #logo:hover {
   color: #0757f7;
   text-decoration: none;
