@@ -14,11 +14,13 @@ class  ArticlesController < ApplicationController
 
 
   def create
+    #you can add the"debugger" for debugging and add in layouts --> application.html.erb--> write <%= debug(params) if Rails.env.development? %> to view the flow in the pages and hit ctrl +d to exit from debugging in rails server
     # render plain: params[:article].inspect   #This code is without validation
     # @article =Article.new(article_params)  #This code is without validation
     # @article.save                             #This code is without validation
     # redirect_to article_path(@article)       #This code is without validation
     @article =Article.new(article_params)  # this is taken from the new action
+    @article.user = User.first  #for one to many association to create a userId while cretaing articles we need that user
     if @article.save 
       flash[:success] = "Article has successfully created"
       redirect_to article_path(@article)  #Show path
