@@ -22,5 +22,5 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
-  pool: 15
+  url: <%= ENV["DATABASE_URL"] %>
+  pool: 15 
